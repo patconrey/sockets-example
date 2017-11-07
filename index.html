@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>WebSockets Example</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+<ul id="messages"></ul>
+
+<form class="input-bar" action="">
+    <input type="text" id="m" autocomplete="off" placeholder="Enter your message here!"/>
+    <button class="accepted">SEND</button>
+</form>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+<script>
+    $(function () {
+
+        var startTime;
+        var endTime;
+
+        var socket = io();
+
+        $('form').submit(function(){
+            startTime = performance.now();
+            socket.emit('chat message', $('#m').val());
+            $('#m').val('');
+            return false;
+        });
+
+        socket.on('chat message', function (msg) {
+            endTime = performance.now();
+            var newItem = document.createElement('li');
+            newItem.innerHTML = msg;
+            $('#messages').append(newItem);
+            setTimeout(function() {
+                newItem.className = newItem.className + " show";
+            }, 10);
+            console.log('LATENCY: ' + (endTime - startTime) + '[ms]');
+        });
+    });
+</script>
+
+</body>
+
+</html>

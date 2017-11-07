@@ -1,0 +1,26 @@
+{
+  "name": "chat-example",
+  "version": "1.0.0",
+  "description": "quick chat example using websockets",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon -e scss -x \"npm run css\" | nodemon -e js -x \"npm run js\"",
+    "css": "./bin/css",
+    "watch-css": "./bin/watch-css"
+  },
+  "author": "pat conrey",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "socket.io": "^2.0.4",
+    "bootstrap": "^3.3.7",
+    "bootstrap-sass": "^3.3.7",
+    "nodemon": "^1.12.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "node-sass": "^4.6.0"
+  }
+}
